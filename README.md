@@ -16,6 +16,9 @@ To run this in your environment, you'll want to edit the values in the following
  - `kafka-iris-data/src/main/resources/application.properties`
  - `kstreams-iris-classification/src/main/resources/config.properties`
 
+Specifically update the following: 
+1. update `bootstrap.servers` and `sasl.jass.config` in the following file to match your Confluent Cloud cluster: kstreams-iris-classification/src/main/resources/config.properties
+2. And you can set global env variables in your IDE for the other application.config file to pick them up (see kafka-iris-data/src/main/resources/application.properties)
 
 The ML model was generated using h2o's AutoML function in a few lines of Python:
 
