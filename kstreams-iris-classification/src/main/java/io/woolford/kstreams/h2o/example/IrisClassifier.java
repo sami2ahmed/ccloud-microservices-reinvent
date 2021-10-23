@@ -8,8 +8,8 @@ import hex.genmodel.easy.EasyPredictModelWrapper;
 import hex.genmodel.easy.RowData;
 import hex.genmodel.easy.exception.PredictException;
 import hex.genmodel.easy.prediction.MultinomialModelPrediction;
-import io.woolford.kstreams.h2o.example.serde.IrisRecordSerde;
 import io.woolford.kstreams.h2o.example.serde.IrisPredictionRecordSerde;
+import io.woolford.kstreams.h2o.example.serde.IrisRecordSerde;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.streams.*;
@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.time.Duration;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 class IrisClassifier {
 
