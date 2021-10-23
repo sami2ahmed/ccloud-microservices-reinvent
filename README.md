@@ -7,7 +7,7 @@ This example is based on the famous [iris dataset](https://en.wikipedia.org/wiki
 ![iris sepal petal diagram](img/iris_sepal_petal.png)
 
 There are two parts to this example:
-1. a Java Spring app that randomly streams records from the iris dataset to a topic: `iris`.
+1. a Java Spring app that randomly streams records from the iris dataset to a topic: `iris` which is in a Confluent Cloud cluster.
 2. a Kafka Streams app that consumes records from the `iris` topic, predicts the iris species, and outputs those preductions to another topic: `iris-classified`:
 
 
