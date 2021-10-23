@@ -10,7 +10,6 @@ There are two parts to this example:
 1. a Java Spring app that randomly streams records from the iris dataset to a topic: `iris`.
 2. a Kafka Streams app that consumes records from the `iris` topic, predicts the iris species, and outputs those preductions to another topic: `iris-classified`:
 
-![iris streams diagram](img/iris_streams.png)
 
 To run this in your environment, you'll want to edit the values in the following two properties files:
  - `kafka-iris-data/src/main/resources/application.properties`
