@@ -1,4 +1,4 @@
-# Kafka Streams h2o example
+# Embed multi-classification machine learning model in a streaming pipeline demo with Confluent Cloud and AWS Lambda/SNS 
 
 In this demo, I will show how to easily run your microservices against Confluent Cloud -- a cloud native fully managed kafka solution. Through a combination of services -- notably kafka streams, python, and springboot -- I will show how data science model predictions can be continuously generated as new data flows through the Confluent Cloud cluster. I will evaluate model predictions through Confluent Cloud’s fully managed stream processing tool -- ksqlDB -- and kick off alerts on model performance through AWS lambdas. 
 
