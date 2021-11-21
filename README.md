@@ -2,6 +2,8 @@
 
 In this demo, I will show how to easily run your microservices against Confluent Cloud -- a cloud native fully managed kafka solution. Through a combination of services -- notably kafka streams, python, and springboot -- I will show how data science model predictions can be continuously generated as new data flows through the Confluent Cloud cluster. I will evaluate model predictions through Confluent Cloud’s fully managed stream processing tool -- ksqlDB -- and kick off alerts on model performance through AWS lambdas. 
 
+
+
 ![high level architecture](img/microservicesReinventDemo.jpeg)
 
 This example is based on the famous [iris dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set), which is a classic multi-classification problem where four numerical covariates (i.e. petal/sepal lengths and widths) are used to predict the iris species (i.e. setosa, versicolor, and virginica).
