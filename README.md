@@ -5,13 +5,14 @@ In this demo, I will show how to easily run your microservices against Confluent
 ![high level architecture](img/microservicesReinventDemo.jpeg)
 
 # Prerequisities
-1. Basic cluster in Confluent Cloud
+1. Basic cluster in Confluent Cloud 
 2. Ksqldb cluster in Confluent Cloud 
-3. Lambda sink connector in Confluent Cloud 
-4. Confluent Cloud CLI
-5. java11 (set JAVA_HOME)
-6. AWS Lambda 
-7. AWS SNS 
+** note ccloud stack will automate spinning up of items 1&2 --> [ccloud stack] (https://docs.confluent.io/platform/current/tutorials/examples/ccloud/docs/ccloud-stack.html) 
+4. [Lambda sink connector in Confluent Cloud] (https://docs.confluent.io/cloud/current/connectors/cc-aws-lambda-sink.html) 
+5. [Confluent Cloud CLI] (https://docs.confluent.io/ccloud-cli/current/install.html) 
+6. java11 (set JAVA_HOME)
+7. AWS Lambda  
+8. AWS SNS 
 
 This example is based on the famous [iris dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set), which is a classic multi-classification problem where four numerical covariates (i.e. petal/sepal lengths and widths) are used to predict the iris species (i.e. setosa, versicolor, and virginica).
 
