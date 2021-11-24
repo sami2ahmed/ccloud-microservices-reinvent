@@ -24,7 +24,6 @@ There are two parts to this example:
 1. a Java Spring app that randomly streams records from the iris dataset to a topic: `iris` which is in a Confluent Cloud cluster.
 2. a Kafka Streams app that consumes records from the `iris` topic, predicts the iris species, and outputs those preductions to another topic: `iris-classified`:
 
-
 To run this in your environment, you'll want to edit the values in the following two properties files:
  - `kafka-iris-data/src/main/resources/application.properties`
  - `kstreams-iris-classification/src/main/resources/config.properties`
@@ -32,6 +31,26 @@ To run this in your environment, you'll want to edit the values in the following
 Specifically update the following: 
 1. update `bootstrap.servers` and `sasl.jass.config` in the following file to match your Confluent Cloud cluster: kstreams-iris-classification/src/main/resources/config.properties
 2. And you can set global env variables in your IDE for the other application.config file to pick them up (see kafka-iris-data/src/main/resources/application.properties)
+
+# Ksqldb 
+
+After you've spun up a ksqldb app, started the spring app and kafka streams app, next you'll want to create some streams and tables in ksqldb. Referring to the diagram above, we should have a "iris-classified" topic in your Confluent Cloud cluster -- this is holding the output of our data science team (has predicted species field in message payload). Using ksqldb, we will do some aggregations to tell us when the model is correct or not: 
+
+`CREATE STREAM IRIS_CLASSIFIED_STREAM (
+	SPECIES VARCHAR,
+	PREDICTEDSPECIES VARCHAR,
+	SEPALLENGTH INT,
+	PETALLENGTH INT,
+	PETALWIDTH INT)
+WITH (KAFKA_TOPIC = 'iris-classified', FORMAT='JSON');` 
+
+We first create a stream based on iris-classified topic, simply paste that query in the ksqldb editor i.e. 
+
+[ksqldb1](img/reinventksql1.png) 
+
+
+----- 
+### Nice to know appendix: 
 
 The ML model was generated using h2o's AutoML function in a few lines of Python:
 
