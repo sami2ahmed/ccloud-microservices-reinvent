@@ -7,9 +7,9 @@ In this demo, I will show how to easily run your microservices against Confluent
 # Prerequisities
 1. Basic cluster in Confluent Cloud 
 2. Ksqldb cluster in Confluent Cloud 
-** note ccloud stack will automate spinning up of items 1&2 --> [ccloud stack] (https://docs.confluent.io/platform/current/tutorials/examples/ccloud/docs/ccloud-stack.html) 
-4. [Lambda sink connector in Confluent Cloud] (https://docs.confluent.io/cloud/current/connectors/cc-aws-lambda-sink.html) 
-5. [Confluent Cloud CLI] (https://docs.confluent.io/ccloud-cli/current/install.html) 
+** note ccloud stack will automate spinning up of items 1&2 --> [ccloud stack](https://docs.confluent.io/platform/current/tutorials/examples/ccloud/docs/ccloud-stack.html) 
+4. [Lambda sink connector in Confluent Cloud](https://docs.confluent.io/cloud/current/connectors/cc-aws-lambda-sink.html) 
+5. [Confluent Cloud CLI](https://docs.confluent.io/ccloud-cli/current/install.html) 
 6. java11 (set JAVA_HOME)
 7. AWS Lambda  
 8. AWS SNS 
