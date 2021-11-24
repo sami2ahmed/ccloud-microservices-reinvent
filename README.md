@@ -62,10 +62,31 @@ CREATE TABLE IRIS_CLASSIFIED_ENRICHED WITH (kafka_topic='model-output', format='
 	FROM IRIS_CLASSIFIED_STREAM
 	GROUP BY SPECIES, PREDICTEDSPECIES;
 ``` 
+# AWS SNS 
+
+You will need to spin up SNS topic in your AWS console and subscribe to that SNS topic. Docs [here](https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html). Copy your SNS topic ARN for pasting into the Lambda query in the next section. 
 
 # AWS Lambda   
 
+In your AWS console, spin up a new Lambda Python app. I used python3.7 in this example -- see [here](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html) for AWS docs on spinning up Lambda. Once you have that up, here's the query I used: 
 
+```
+from __future__ import print_function
+import boto3
+import base64
+import json
+
+client = boto3.client('sns')
+# Include your SNS topic ARN here.
+topic_arn = <'INSERT_YOUR_TOPIC_ARN_HERE'>
+
+def lambda_handler(event, context):
+        uncoded_payload = json.dumps(event)
+        #payload = base64.b64decode(uncoded_payload)
+        payload = uncoded_payload
+        print(payload)
+        client.publish(TopicArn=topic_arn, Message=payload, Subject='Sent from Confluent Cloud')
+```
 
 # Lambda sink connector 
 
@@ -90,6 +111,8 @@ The connector will take ~15-45min. to spin up, once you see the connector in run
 
 ![connector_running](img/lambdasinkconnector.png)
 
+# Email confirmation 
+If everything is working up to this point, you should start to get a lot of emails from the SNS topic with the subject "Sent from Confluent Cloud"
 
 ----- 
 ### Nice to know appendix: 
