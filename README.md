@@ -46,7 +46,7 @@ WITH (KAFKA_TOPIC = 'iris-classified', FORMAT='JSON');`
 
 We first create a stream based on iris-classified topic, simply paste that query in the ksqldb editor i.e. 
 
-[ksqldb1](img/reinventksql1.png) 
+![ksqldb1](img/reinventksql1.png) 
 
 
 ----- 
