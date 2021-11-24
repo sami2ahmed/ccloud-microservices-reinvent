@@ -1,4 +1,6 @@
-# Video demo goes live at AWS reinvent Nov. 29 2021 9am PT 
+# Come see the demo below live at Reinvent, find the Confluent Booth 
+
+Video demo goes live at AWS reinvent Nov. 29 2021 9am PT 
 https://youtu.be/W4c4NYDCShA
 
 # Embed multi-classification machine learning model in a streaming pipeline demo with Confluent Cloud and AWS Lambda/SNS 
