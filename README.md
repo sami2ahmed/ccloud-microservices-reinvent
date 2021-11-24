@@ -36,17 +36,35 @@ Specifically update the following:
 
 After you've spun up a ksqldb app, started the spring app and kafka streams app, next you'll want to create some streams and tables in ksqldb. Referring to the diagram above, we should have a "iris-classified" topic in your Confluent Cloud cluster -- this is holding the output of our data science team (has predicted species field in message payload). Using ksqldb, we will do some aggregations to tell us when the model is correct or not: 
 
-`CREATE STREAM IRIS_CLASSIFIED_STREAM (
+```
+CREATE STREAM IRIS_CLASSIFIED_STREAM (
 	SPECIES VARCHAR,
 	PREDICTEDSPECIES VARCHAR,
 	SEPALLENGTH INT,
 	PETALLENGTH INT,
 	PETALWIDTH INT)
-WITH (KAFKA_TOPIC = 'iris-classified', FORMAT='JSON');` 
+WITH (KAFKA_TOPIC = 'iris-classified', FORMAT='JSON');
+``` 
 
-We first create a stream based on iris-classified topic, simply paste that query in the ksqldb editor i.e. 
+We first create a stream based on iris-classified topic, simply paste that query in the ksqldb editor and hit "submit query" i.e. 
 
 ![ksqldb1](img/reinventksql1.png) 
+
+Then we create a table based on that stream, again just drop into the editor and plug in your query and submit. This one is a bit more involved because I want to 
+execute that predicate for evaluating my model performance within this query. This query will output the model result to a new topic called "model-output". I will use this topic to then feed the AWS lambda sink connector. 
+
+```
+CREATE TABLE IRIS_CLASSIFIED_ENRICHED WITH (kafka_topic='model-output', format='JSON') AS SELECT
+	SPECIES, AS_VALUE(SPECIES) AS TRAINSET_SPECIES,
+	PREDICTEDSPECIES, AS_VALUE(PREDICTEDSPECIES) AS MODELOUTPUT_PREDICTEDSPECIES,
+	CASE WHEN SPECIES = PREDICTEDSPECIES THEN TRUE ELSE FALSE END AS CORRECT,
+	count(*) AS RECORDS
+	FROM IRIS_CLASSIFIED_STREAM
+	GROUP BY SPECIES, PREDICTEDSPECIES;
+``` 
+
+# Lambda sink connector 
+
 
 
 ----- 
