@@ -63,8 +63,32 @@ CREATE TABLE IRIS_CLASSIFIED_ENRICHED WITH (kafka_topic='model-output', format='
 	GROUP BY SPECIES, PREDICTEDSPECIES;
 ``` 
 
+# AWS Lambda   
+
+
+
 # Lambda sink connector 
 
+Setting up the sink connector is relatively simple -- referring to the link in the prequisties to get the connector spun up. The topic we want to select as input for the connector will be "model-output." The full config for my connector looks like this, you can gut check it against your connector when you get to step 2 (i.e. "test and verify") in the connector setup UI flow 
+
+```
+{
+  "name": "LambdaSinkConnector",
+  "config": {
+    "topics": "model-output",
+    "input.data.format": "JSON",
+    "connector.class": "LambdaSink",
+    "name": "LambdaSinkConnector",
+    "aws.lambda.function.name": "modelPerformance",
+    "aws.lambda.invocation.type": "sync",
+    "aws.lambda.batch.size": "1",
+    "tasks.max": "1"
+  }
+}
+```
+The connector will take ~15-45min. to spin up, once you see the connector in running state then you can move on i.e. 
+
+![connector_running](img/lambdasinkconnector.png)
 
 
 ----- 
